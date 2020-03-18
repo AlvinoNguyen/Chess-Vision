@@ -1,0 +1,46 @@
+:root {
+    --dimensions: 8;
+    --square-size: 10vmin;
+    --dark-square: hsl(88,26%,46%);
+    --dark-square-hover: hsl(88,26%,51%);
+    --light-square: hsl(62,42%,87%);
+    --light-square-hover: hsl(62,42%,92%);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-rows: repeat(
+        var(--dimensions),
+        calc(100% / var(--dimensions))
+    );
+    grid-template-columns: repeat(
+        var(--dimensions),
+        calc(100% / var(--dimensions))
+    );
+}
+
+.square {
+    width: var(--square-size);
+    height: var(--square-size);
+    transition: background-color 0.2s;
+}
+
+.square:hover {
+    cursor: pointer;
+}
+
+.square.dark {
+    background-color: var(--dark-square);
+}
+
+.square.dark:hover {
+    background-color: var(--dark-square-hover);
+}
+
+.square.light {
+    background-color: var(--light-square);
+}
+
+.square.light:hover {
+    background-color: var(--light-square-hover);
+}
