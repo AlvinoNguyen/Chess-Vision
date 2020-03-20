@@ -1,10 +1,13 @@
 :root {
+    --grid-border-radius: .5rem;
     --dimensions: 8;
     --square-size: 10vmin;
     --dark-square: hsl(88,26%,46%);
-    --dark-square-hover: hsl(88,26%,51%);
+    --dark-square-hover: hsl(88,26%,48%);
+    --dark-square-active: hsl(88,26%,50%);
     --light-square: hsl(62,42%,87%);
-    --light-square-hover: hsl(62,42%,92%);
+    --light-square-hover: hsl(62,42%,89%);
+    --light-square-active: hsl(62,42%,91%);
 }
 
 .grid-container {
@@ -17,12 +20,14 @@
         var(--dimensions),
         calc(100% / var(--dimensions))
     );
+    position: relative;
 }
 
 .square {
     width: var(--square-size);
     height: var(--square-size);
-    transition: background-color 0.2s;
+    transition: background-color 0.15s;
+    z-index: 0;
 }
 
 .square:hover {
@@ -37,10 +42,42 @@
     background-color: var(--dark-square-hover);
 }
 
+.square.dark:active {
+    background-color: var(--dark-square-active);
+}
+
 .square.light {
     background-color: var(--light-square);
 }
 
 .square.light:hover {
     background-color: var(--light-square-hover);
+}
+
+.square.light:active {
+    background-color: var(--light-square-active);
+}
+
+.square:nth-child(1) {
+    border-radius: var(--grid-border-radius) 0 0 0;
+}
+
+.square:nth-child(8) {
+    border-radius: 0 var(--grid-border-radius) 0 0;
+}
+
+.square:nth-last-child(1) {
+    border-radius: 0 0 var(--grid-border-radius) 0;
+}
+
+.square:nth-last-child(8) {
+    border-radius: 0 0 0 var(--grid-border-radius);
+}
+
+.green-glow {
+    background-color: green !important;
+}
+
+.red-glow {
+    background-color: red !important;
 }

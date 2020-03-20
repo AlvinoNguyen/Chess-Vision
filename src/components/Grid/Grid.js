@@ -2,6 +2,10 @@ import React from 'react';
 import './Grid.css';
 
 class Grid extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         const dimensions = 8;
         const squares = [];
@@ -13,8 +17,20 @@ class Grid extends React.Component {
         }
         for(let i = 0; i < dimensions; i++) {
             for(let j = 0; j <= i; j++) {
-                squares[i][j] = <div key={`${i}${j}`} className={`square ${(i + j) % 2 === 0 ? "light" : "dark"}`}></div>;
-                squares[j][i] = <div key={`${i}${j}`} className={`square ${(i + j) % 2 === 0 ? "light" : "dark"}`}></div>;
+                squares[i][j] = (
+                    <div
+                        key={`${i}${j}`}
+                        className={`square ${(i + j) % 2 === 0 ? "light" : "dark"}`}
+                        onClick={(event) => {this.props.handleSquareClick(event, String.fromCharCode(97 + j), 8 - i + '');}}
+                    ></div>
+                );
+                squares[j][i] = (
+                    <div
+                        key={`${i}${j}`}
+                        className={`square ${(i + j) % 2 === 0 ? "light" : "dark"}`}
+                        onClick={(event) => {this.props.handleSquareClick(event, String.fromCharCode(97 + i), 8 - j + '');}}
+                    ></div>
+                );
             }
         }
         return <div className="grid-container">
