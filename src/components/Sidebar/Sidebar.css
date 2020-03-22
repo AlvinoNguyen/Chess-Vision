@@ -1,0 +1,22 @@
+:root {
+    --sidebar-border-radius: 4px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+}
+
+h1 {
+    background-color: var(--dark-square);
+    border-radius: var(--sidebar-border-radius) var(--sidebar-border-radius) 0 0;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+.blank {
+    background-color: white;
+    flex-grow: 1;
+}

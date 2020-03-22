@@ -1,5 +1,6 @@
 import React from 'react';
 import Grid from '../Grid/Grid.js';
+import Sidebar from '../Sidebar/Sidebar.js';
 import './App.css';
 
 class App extends React.Component {
@@ -56,8 +57,7 @@ class App extends React.Component {
             <div className="app-container">
                 <div className="coordinate">{this.state.coordinate}</div>
                 <Grid handleSquareClick={this.handleSquareClick}/>
-                <div className="coordinate">Attempts: {this.state.attempts}</div>
-                <div className="coordinate">Successes: {this.state.successes}</div>
+                <Sidebar/>
             </div>
         );
     }

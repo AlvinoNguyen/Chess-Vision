@@ -1,0 +1,73 @@
+:root {
+    --start-button-color: hsl(32, 78%, 53%);
+    --start-button-hover: hsl(32, 78%, 48%);
+}
+
+*:focus {
+    outline: 0;
+}
+
+.options {
+    border-radius: 0 0 var(--sidebar-border-radius) var(--sidebar-border-radius);
+    display: flex;
+    flex-direction: column;
+    background-color: lightgray;
+    padding: 1rem;
+}
+
+.options > * {
+    margin: .3rem;
+}
+
+.color {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.color > * {
+    margin: .1rem;
+}
+
+.color > select {
+    border-color: lightgray;
+    color: darkslategray;
+    font-size: .9rem;
+    padding: .25rem;
+}
+
+.color > select > option {
+    font-size: .8rem;
+}
+
+.color > select > option:hover {
+    background-color: lightgray;
+}
+
+.show-coordinates {
+    display: flex;
+    justify-content: center;
+}
+
+.show-coordinates > input {
+    margin-right: .25rem;
+    position: relative;
+    top: 3px;
+}
+
+.start-button {
+    background-color: var(--start-button-color);
+    border: none;
+    border-radius: var(--sidebar-border-radius);
+    color: white;
+    font-size: 1rem;
+    font-weight: 550;
+    padding: 1rem;
+    transition: background-color .3s;
+}
+
+.start-button:hover {
+    cursor: pointer;
+    background-color: var(--start-button-hover);
+}
+
