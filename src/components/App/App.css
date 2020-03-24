@@ -32,10 +32,3 @@ body {
 .app-container > * {
     margin: 1rem;
 }
-
-.coordinate {
-    color: white;
-    font-size: 1.5rem;
-    text-align: center;
-    padding: .1rem;
-}

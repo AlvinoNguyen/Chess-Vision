@@ -3,8 +3,8 @@ import Options from '../Options/Options.js';
 import './Sidebar.css';
 
 class Sidebar extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
     }
 
     render() {
@@ -12,7 +12,7 @@ class Sidebar extends React.Component {
             <div className="sidebar">
                 <h1>Vision</h1>
                 <div className="blank"></div>
-                <Options/>
+                <Options playGame={this.props.playGame}/>
             </div>
         )
     }

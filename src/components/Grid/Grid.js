@@ -19,6 +19,7 @@ class Grid extends React.Component {
             for(let j = 0; j <= i; j++) {
                 squares[i][j] = (
                     <div
+                        id={(String.fromCharCode(97 + j)) + (8 - i + '')}
                         key={`${i}${j}`}
                         className={`square ${(i + j) % 2 === 0 ? "light" : "dark"}`}
                         onClick={(event) => {this.props.handleSquareClick(event, String.fromCharCode(97 + j), 8 - i + '');}}
@@ -26,6 +27,7 @@ class Grid extends React.Component {
                 );
                 squares[j][i] = (
                     <div
+                        id={(String.fromCharCode(97 + i)) + (8 - j + '')}
                         key={`${i}${j}`}
                         className={`square ${(i + j) % 2 === 0 ? "light" : "dark"}`}
                         onClick={(event) => {this.props.handleSquareClick(event, String.fromCharCode(97 + i), 8 - j + '');}}
@@ -35,6 +37,9 @@ class Grid extends React.Component {
         }
         return <div className="grid-container">
             {squares}
+            <div className="display-container">
+                <div className="display">a8</div>
+            </div>
         </div>;
     }
 }

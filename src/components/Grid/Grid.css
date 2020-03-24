@@ -66,11 +66,11 @@
     border-radius: 0 var(--grid-border-radius) 0 0;
 }
 
-.square:nth-last-child(1) {
+.square:nth-last-child(2) {
     border-radius: 0 0 var(--grid-border-radius) 0;
 }
 
-.square:nth-last-child(8) {
+.square:nth-last-child(9) {
     border-radius: 0 0 0 var(--grid-border-radius);
 }
 
@@ -80,4 +80,23 @@
 
 .red-glow {
     background-color: #DB4437 !important;
+}
+
+.display-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.display {
+    color: white;
+    text-shadow: 3px 3px 3px black;
+    font-size: 5rem;
+    text-align: center;
+    padding: .1rem;
+    transition: opacity 0.75s;
+    transition-timing-function: ease-out;
 }

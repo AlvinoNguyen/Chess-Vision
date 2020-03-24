@@ -21,7 +21,7 @@ class Options extends React.Component {
                     <input type="checkbox" name="show-coordinates" value="show-coordinates"/>
                     <div>Show Coordinates</div>
                 </div>
-                <button className="start-button">Start</button>
+                <button className="start-button" onClick={this.props.playGame}>Start</button>
             </div>
         );
     }
