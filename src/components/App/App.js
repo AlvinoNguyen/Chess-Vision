@@ -10,30 +10,50 @@ class App extends React.Component {
             attempts: 0,
             successes: 0,
             coordinate: '',
-            gameInProgress: false
+            gameInProgress: false,
+            displayInnerHTML: '',
+            displayStyle: {},
+            displayZIndex: 1,
         };
         this.setRandomCoordinate = this.setRandomCoordinate.bind(this);
         this.handleSquareClick = this.handleSquareClick.bind(this);
         this.playGame = this.playGame.bind(this);
     }
 
-    async playGame() {
-        const displayContainer = document.querySelector('.display-container');
-        const display = document.querySelector('.display');
-        display.innerHTML = '3';
+    playGame() {
+        this.setState({displayInnerHTML: '3'});
         setTimeout(() => {
-            display.innerHTML = '2';
+            this.setState({displayInnerHTML: '2'});
+            (() => {
+                setTimeout(() => {
+                    this.setState({displayInnerHTML: '1'});
+                    (() => {
+                        setTimeout(() => {
+                            this.setState({displayInnerHTML: 'Go!',});
+                            (() => {
+                                setTimeout(() => {
+                                    this.setRandomCoordinate();
+                                    this.setState({
+                                        displayInnerHTML: this.state.coordinate,
+                                        gameInProgress: true
+                                    });
+                                    setTimeout(() => {
+                                        this.setState({displayZIndex: -1});
+                                    }, 500);
+                                    setTimeout(() => {
+                                        this.setState({
+                                            displayInnerHTML: 'Time!',
+                                            displayZIndex: 1,
+                                            gameInProgress: false
+                                        });
+                                    }, 30000);
+                                }, 750)
+                            })();
+                        }, 750);
+                    })();
+                }, 750);
+            })();
         }, 750);
-        setTimeout(() => {
-            display.innerHTML = '1';
-        }, 1500);
-        setTimeout(() => {
-            display.innerHTML = 'Go!';
-        }, 2250);
-        this.setState({gameInProgress: true});
-        setTimeout(() => {
-            this.setState({gameInProgress: false});
-        }, 3000);
     }
 
     setRandomCoordinate() {
@@ -75,7 +95,18 @@ class App extends React.Component {
                 correct.classList.remove('green-glow');
             }, 150);
         }
-        this.setRandomCoordinate();
+        setTimeout(() => {
+            this.setRandomCoordinate();
+            this.setState({
+                displayInnerHTML: this.state.coordinate,
+                displayZIndex: 1
+            });
+            setTimeout(() => {
+                if(this.state.gameInProgress) {
+                    this.setState({displayZIndex: -1});
+                }
+            }, 500);
+        }, 0);
     }
 
     componentDidMount() {
@@ -85,7 +116,12 @@ class App extends React.Component {
     render() {
         return (
             <div className="app-container">
-                <Grid handleSquareClick={this.handleSquareClick}/>
+                <Grid
+                    handleSquareClick={this.handleSquareClick}
+                    displayInnerHTML={this.state.displayInnerHTML}
+                    displayStyle={this.state.displayStyle}
+                    displayZIndex={this.state.displayZIndex}
+                />
                 <Sidebar playGame={this.playGame}/>
             </div>
         );

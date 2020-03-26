@@ -37,8 +37,10 @@ class Grid extends React.Component {
         }
         return <div className="grid-container">
             {squares}
-            <div className="display-container">
-                <div className="display">a8</div>
+            <div className="display-container" style={{zIndex: this.props.displayZIndex}}>
+                <div className="display" style={this.props.displayStyle}>
+                    {this.props.displayInnerHTML}
+                </div>
             </div>
         </div>;
     }
