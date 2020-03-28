@@ -1,5 +1,6 @@
 :root {
     --grid-border-radius: .5rem;
+    --grid-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     --dimensions: 8;
     --square-size: 10vmin;
     --dark-square: hsl(88,26%,46%);
@@ -28,6 +29,11 @@
     height: var(--square-size);
     transition: background-color 0.05s;
     z-index: 0;
+    font-family: var(--grid-font);
+    font-size: 1rem;
+    font-weight: bold;
+    padding-top: .25rem;
+    padding-left: .35rem;
 }
 
 .square:hover {
@@ -36,6 +42,7 @@
 
 .square.dark {
     background-color: var(--dark-square);
+    color: var(--light-square);
 }
 
 .square.dark:hover {
@@ -48,6 +55,7 @@
 
 .square.light {
     background-color: var(--light-square);
+    color: var(--dark-square);
 }
 
 .square.light:hover {
@@ -94,7 +102,7 @@
 .display {
     color: white;
     text-shadow: 5px 5px 3px black;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: var(--grid-font);
     font-size: 5rem;
     font-weight: bold;
     text-align: center;

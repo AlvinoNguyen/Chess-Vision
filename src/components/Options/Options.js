@@ -8,7 +8,7 @@ class Options extends React.Component {
 
     render() {
         return (
-            <div className="options">
+            <div className="options" style={this.props.gameInProgress ? {display: 'none'} : {}}>
                 <div className="color">
                     <label htmlFor="color">Color</label>
                     <select name="color">
@@ -18,7 +18,13 @@ class Options extends React.Component {
                     </select>
                 </div>
                 <div className="show-coordinates">
-                    <input type="checkbox" name="show-coordinates" value="show-coordinates"/>
+                    <input
+                        type="checkbox"
+                        name="show-coordinates"
+                        value="show-coordinates"
+                        onChange={this.props.toggleShowCoordinates}
+                        defaultChecked
+                    />
                     <div>Show Coordinates</div>
                 </div>
                 <button className="start-button" onClick={this.props.playGame}>Start</button>

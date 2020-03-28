@@ -17,21 +17,30 @@ class Grid extends React.Component {
         }
         for(let i = 0; i < dimensions; i++) {
             for(let j = 0; j <= i; j++) {
-                squares[i][j] = (
-                    <div
-                        id={(String.fromCharCode(97 + j)) + (8 - i + '')}
-                        key={`${i}${j}`}
-                        className={`square ${(i + j) % 2 === 0 ? "light" : "dark"}`}
-                        onClick={(event) => {this.props.handleSquareClick(event, String.fromCharCode(97 + j), 8 - i + '');}}
-                    ></div>
-                );
+                const file1 = String.fromCharCode(97 + i);
+                const file2 = String.fromCharCode(97 + j);
+                const row1 = 8 - j + '';
+                const row2 = 8 - i + '';
                 squares[j][i] = (
                     <div
-                        id={(String.fromCharCode(97 + i)) + (8 - j + '')}
+                        id={file1 + row1}
                         key={`${i}${j}`}
                         className={`square ${(i + j) % 2 === 0 ? "light" : "dark"}`}
-                        onClick={(event) => {this.props.handleSquareClick(event, String.fromCharCode(97 + i), 8 - j + '');}}
+                        onClick={(event) => {this.props.handleSquareClick(event, file1, row1);}}
                     ></div>
+                );
+                squares[i][j] = (
+                    <div
+                        id={file2 + row2}
+                        key={`${i}${j}`}
+                        className={`square ${(i + j) % 2 === 0 ? "light" : "dark"}`}
+                        onClick={(event) => {this.props.handleSquareClick(event, file2, row2);}}
+                    >
+                        {
+                            this.props.showCoordinates && (j === 0 || i === dimensions - 1) ?
+                            file2 + row2 : ''
+                        }
+                    </div>
                 );
             }
         }

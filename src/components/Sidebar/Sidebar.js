@@ -12,7 +12,11 @@ class Sidebar extends React.Component {
             <div className="sidebar">
                 <h1>Vision</h1>
                 <div className="blank"></div>
-                <Options playGame={this.props.playGame}/>
+                <Options
+                    playGame={this.props.playGame}
+                    gameInProgress={this.props.gameInProgress}
+                    toggleShowCoordinates={this.props.toggleShowCoordinates}
+                />
             </div>
         )
     }

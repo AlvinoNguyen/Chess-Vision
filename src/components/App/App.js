@@ -14,14 +14,27 @@ class App extends React.Component {
             displayInnerHTML: '',
             displayStyle: {},
             displayZIndex: 1,
+            showCoordinates: true
         };
         this.setRandomCoordinate = this.setRandomCoordinate.bind(this);
         this.handleSquareClick = this.handleSquareClick.bind(this);
         this.playGame = this.playGame.bind(this);
+        this.toggleShowCoordinates = this.toggleShowCoordinates.bind(this);
+    }
+
+    toggleShowCoordinates() {
+        this.setState(state => {
+            return {
+                showCoordinates: !state.showCoordinates
+            };
+        });
     }
 
     playGame() {
-        this.setState({displayInnerHTML: '3'});
+        this.setState({
+            displayInnerHTML: '3',
+            gameInProgress: true
+        });
         setTimeout(() => {
             this.setState({displayInnerHTML: '2'});
             (() => {
@@ -33,10 +46,7 @@ class App extends React.Component {
                             (() => {
                                 setTimeout(() => {
                                     this.setRandomCoordinate();
-                                    this.setState({
-                                        displayInnerHTML: this.state.coordinate,
-                                        gameInProgress: true
-                                    });
+                                    this.setState({displayInnerHTML: this.state.coordinate});
                                     setTimeout(() => {
                                         this.setState({displayZIndex: -1});
                                     }, 500);
@@ -46,6 +56,9 @@ class App extends React.Component {
                                             displayZIndex: 1,
                                             gameInProgress: false
                                         });
+                                        setTimeout(() => {
+                                            this.setState({displayInnerHTML: ''});
+                                        }, 750)
                                     }, 30000);
                                 }, 750)
                             })();
@@ -121,8 +134,13 @@ class App extends React.Component {
                     displayInnerHTML={this.state.displayInnerHTML}
                     displayStyle={this.state.displayStyle}
                     displayZIndex={this.state.displayZIndex}
+                    showCoordinates={this.state.showCoordinates}
                 />
-                <Sidebar playGame={this.playGame}/>
+                <Sidebar
+                    gameInProgress={this.state.gameInProgress}
+                    playGame={this.playGame}
+                    toggleShowCoordinates={this.toggleShowCoordinates}
+                />
             </div>
         );
     }

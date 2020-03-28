@@ -12,6 +12,7 @@ h1 {
     background-color: var(--dark-square);
     border-radius: var(--sidebar-border-radius) var(--sidebar-border-radius) 0 0;
     color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     padding: 1rem;
     text-align: center;
 }
