@@ -4,9 +4,10 @@ import './Grid.css';
 class Grid extends React.Component {
     constructor(props) {
         super(props);
+        this.renderSquares = this.renderSquares.bind(this);
     }
 
-    render() {
+    renderSquares(gridColor) {
         const dimensions = 8;
         const squares = [];
         for(let i = 0; i < dimensions; i++) {
@@ -17,10 +18,10 @@ class Grid extends React.Component {
         }
         for(let i = 0; i < dimensions; i++) {
             for(let j = 0; j <= i; j++) {
-                const file1 = String.fromCharCode(97 + i);
-                const file2 = String.fromCharCode(97 + j);
-                const row1 = 8 - j + '';
-                const row2 = 8 - i + '';
+                const file1 = gridColor === 'white' ? String.fromCharCode(97 + i) : String.fromCharCode(104 - i);
+                const file2 = gridColor === 'white' ? String.fromCharCode(97 + j) : String.fromCharCode(104 - j);
+                const row1 = gridColor === 'white' ? 8 - j + '' : 1 + j + '';
+                const row2 = gridColor === 'white' ? 8 - i + '' : 1 + i + '';
                 squares[j][i] = (
                     <div
                         id={file1 + row1}
@@ -44,8 +45,12 @@ class Grid extends React.Component {
                 );
             }
         }
+        return squares;
+    }
+
+    render() {
         return <div className="grid-container">
-            {squares}
+            {this.renderSquares(this.props.gridColor)}
             <div className="display-container" style={{zIndex: this.props.displayZIndex}}>
                 <div className="display" style={this.props.displayStyle}>
                     {this.props.displayInnerHTML}

@@ -11,10 +11,10 @@ class Options extends React.Component {
             <div className="options" style={this.props.gameInProgress ? {display: 'none'} : {}}>
                 <div className="color">
                     <label htmlFor="color">Color</label>
-                    <select name="color">
-                        <option>White</option>
-                        <option>Black</option>
-                        <option>White or Black</option>
+                    <select name="color" onChange={this.props.toggleGridColor}>
+                        <option value="white">White</option>
+                        <option value="black">Black</option>
+                        <option value="random">White or Black</option>
                     </select>
                 </div>
                 <div className="show-coordinates">

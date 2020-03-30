@@ -14,18 +14,26 @@ class App extends React.Component {
             displayInnerHTML: '',
             displayStyle: {},
             displayZIndex: 1,
-            showCoordinates: true
+            futureShowCoordinates: true,
+            showCoordinates: true,
+            futureGridColor: 'white',
+            gridColor: 'white'
         };
         this.setRandomCoordinate = this.setRandomCoordinate.bind(this);
         this.handleSquareClick = this.handleSquareClick.bind(this);
         this.playGame = this.playGame.bind(this);
         this.toggleShowCoordinates = this.toggleShowCoordinates.bind(this);
+        this.toggleGridColor = this.toggleGridColor.bind(this);
+    }
+
+    toggleGridColor(event) {
+        this.setState({futureGridColor: event.target.value});
     }
 
     toggleShowCoordinates() {
         this.setState(state => {
             return {
-                showCoordinates: !state.showCoordinates
+                futureShowCoordinates: !state.futureShowCoordinates
             };
         });
     }
@@ -45,6 +53,20 @@ class App extends React.Component {
                             this.setState({displayInnerHTML: 'Go!',});
                             (() => {
                                 setTimeout(() => {
+                                    this.setState(state => {
+                                        let futureGridColor;
+                                        if(state.futureGridColor === 'random') {
+                                            if(Math.floor(Math.random() * 2) == 0)
+                                                futureGridColor = 'white';
+                                            else
+                                                futureGridColor = 'black';
+                                        } else
+                                            futureGridColor = state.futureGridColor;
+                                        return {
+                                            gridColor: futureGridColor,
+                                            showCoordinates: state.futureShowCoordinates
+                                        };
+                                    })
                                     this.setRandomCoordinate();
                                     this.setState({displayInnerHTML: this.state.coordinate});
                                     setTimeout(() => {
@@ -135,11 +157,13 @@ class App extends React.Component {
                     displayStyle={this.state.displayStyle}
                     displayZIndex={this.state.displayZIndex}
                     showCoordinates={this.state.showCoordinates}
+                    gridColor={this.state.gridColor}
                 />
                 <Sidebar
                     gameInProgress={this.state.gameInProgress}
                     playGame={this.playGame}
                     toggleShowCoordinates={this.toggleShowCoordinates}
+                    toggleGridColor={this.toggleGridColor}
                 />
             </div>
         );

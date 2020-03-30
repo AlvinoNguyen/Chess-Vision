@@ -16,6 +16,7 @@ class Sidebar extends React.Component {
                     playGame={this.props.playGame}
                     gameInProgress={this.props.gameInProgress}
                     toggleShowCoordinates={this.props.toggleShowCoordinates}
+                    toggleGridColor={this.props.toggleGridColor}
                 />
             </div>
         )

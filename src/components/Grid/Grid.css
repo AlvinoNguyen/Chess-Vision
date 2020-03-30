@@ -84,10 +84,12 @@
 
 .green-glow {
     background-color: #0F9D58 !important;
+    color: rgba(0, 0, 0, 0) !important;
 }
 
 .red-glow {
     background-color: #DB4437 !important;
+    color: rgba(0, 0, 0, 0) !important;
 }
 
 .display-container {
