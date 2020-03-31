@@ -1,0 +1,24 @@
+:root {
+    --icon-size: 4.5rem;
+}
+
+.stats {
+    background-color: white;
+    flex-grow: 1;
+}
+
+.stats-header {
+    background-color: lightgray;
+}
+
+.round-borders {
+    border-radius: var(--sidebar-border-radius)
+}
+
+.icon {
+    margin: auto;
+    background-color: lightgray;
+    margin-top: calc(var(--icon-size) * .3);
+    width: var(--icon-size);
+    height: var(--icon-size);
+}
