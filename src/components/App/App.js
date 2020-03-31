@@ -41,7 +41,8 @@ class App extends React.Component {
     playGame() {
         this.setState({
             displayInnerHTML: '3',
-            gameInProgress: true
+            gameInProgress: true,
+            coordinate: ''
         });
         setTimeout(() => {
             this.setState({displayInnerHTML: '2'});
@@ -53,6 +54,7 @@ class App extends React.Component {
                             this.setState({displayInnerHTML: 'Go!',});
                             (() => {
                                 setTimeout(() => {
+                                    this.setRandomCoordinate();
                                     this.setState(state => {
                                         let futureGridColor;
                                         if(state.futureGridColor === 'random') {
@@ -160,6 +162,7 @@ class App extends React.Component {
                     gridColor={this.state.gridColor}
                 />
                 <Sidebar
+                    coordinate={this.state.coordinate}
                     gameInProgress={this.state.gameInProgress}
                     playGame={this.playGame}
                     toggleShowCoordinates={this.toggleShowCoordinates}

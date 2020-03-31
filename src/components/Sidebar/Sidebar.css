@@ -16,8 +16,3 @@ h1 {
     padding: 1rem;
     text-align: center;
 }
-
-.blank {
-    background-color: white;
-    flex-grow: 1;
-}

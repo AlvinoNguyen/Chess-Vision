@@ -1,5 +1,6 @@
 import React from 'react';
 import Options from '../Options/Options.js';
+import Stats from '../Stats/Stats.js';
 import './Sidebar.css';
 
 class Sidebar extends React.Component {
@@ -10,8 +11,11 @@ class Sidebar extends React.Component {
     render() {
         return (
             <div className="sidebar">
-                <h1>Vision</h1>
-                <div className="blank"></div>
+                <h1 style={this.props.gameInProgress ? {display: 'none', borderRadius: 'var(--sidebar-border-radius)'} : {}}>Vision</h1>
+                <Stats
+                    coordinate={this.props.coordinate}
+                    gameInProgress={this.props.gameInProgress}
+                />
                 <Options
                     playGame={this.props.playGame}
                     gameInProgress={this.props.gameInProgress}
