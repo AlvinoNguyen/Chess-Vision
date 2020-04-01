@@ -17,7 +17,8 @@ class App extends React.Component {
             futureShowCoordinates: true,
             showCoordinates: true,
             futureGridColor: 'white',
-            gridColor: 'white'
+            gridColor: 'white',
+            secondsLeft: 0
         };
         this.setRandomCoordinate = this.setRandomCoordinate.bind(this);
         this.handleSquareClick = this.handleSquareClick.bind(this);
@@ -39,10 +40,24 @@ class App extends React.Component {
     }
 
     playGame() {
-        this.setState({
-            displayInnerHTML: '3',
-            gameInProgress: true,
-            coordinate: ''
+        this.setState(state => {
+            let futureGridColor;
+            if(state.futureGridColor === 'random') {
+                if(Math.floor(Math.random() * 2) === 0)
+                    futureGridColor = 'white';
+                else
+                    futureGridColor = 'black';
+            } else
+                futureGridColor = state.futureGridColor;
+            return {
+                futureGridColor: futureGridColor,
+                displayInnerHTML: '3',
+                gameInProgress: true,
+                coordinate: '',
+                attempts: 0,
+                successes: 0,
+                secondsLeft: 30
+            };
         });
         setTimeout(() => {
             this.setState({displayInnerHTML: '2'});
@@ -54,18 +69,16 @@ class App extends React.Component {
                             this.setState({displayInnerHTML: 'Go!',});
                             (() => {
                                 setTimeout(() => {
-                                    this.setRandomCoordinate();
+                                    const timer = setInterval(() => {
+                                        this.setState(state => {
+                                            return {
+                                                secondsLeft: state.secondsLeft - 1
+                                            };
+                                        });
+                                    }, 1000);
                                     this.setState(state => {
-                                        let futureGridColor;
-                                        if(state.futureGridColor === 'random') {
-                                            if(Math.floor(Math.random() * 2) == 0)
-                                                futureGridColor = 'white';
-                                            else
-                                                futureGridColor = 'black';
-                                        } else
-                                            futureGridColor = state.futureGridColor;
                                         return {
-                                            gridColor: futureGridColor,
+                                            gridColor: state.futureGridColor,
                                             showCoordinates: state.futureShowCoordinates
                                         };
                                     })
@@ -82,8 +95,9 @@ class App extends React.Component {
                                         });
                                         setTimeout(() => {
                                             this.setState({displayInnerHTML: ''});
-                                        }, 750)
-                                    }, 30000);
+                                        }, 750);
+                                        clearInterval(timer);
+                                    }, 31000);
                                 }, 750)
                             })();
                         }, 750);
@@ -167,6 +181,9 @@ class App extends React.Component {
                     playGame={this.playGame}
                     toggleShowCoordinates={this.toggleShowCoordinates}
                     toggleGridColor={this.toggleGridColor}
+                    gridColor={this.state.futureGridColor}
+                    successes={this.state.successes}
+                    secondsLeft={this.state.secondsLeft}
                 />
             </div>
         );

@@ -1,5 +1,6 @@
 :root {
-    --icon-size: 4.5rem;
+    --icon-size: 5rem;
+    --stats-square-size: 3.5rem;
 }
 
 .stats {
@@ -9,16 +10,63 @@
 
 .stats-header {
     background-color: lightgray;
+    height: calc(var(--square-size));
+    border-radius: var(--sidebar-border-radius) var(--sidebar-border-radius) 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stats-square {
+    width: var(--stats-square-size);
+    height: var(--stats-square-size);
+    border: solid 5px lightgray;
+    outline: solid 1px gray;
+    font-size: calc(var(--stats-square-size) * .5);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    padding-top: .15rem;
+}
+
+.stats-row {
+    display: flex;
+    align-items: center;
+}
+
+.successes {
+    font-size: 2.5rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.white {
+    background-color: white;
+    color: var(--background-color);
+}
+
+.black {
+    background-color: var(--background-color);
+    color: white;
 }
 
 .round-borders {
-    border-radius: var(--sidebar-border-radius)
+    border-radius: var(--sidebar-border-radius);
 }
 
 .icon {
-    margin: auto;
     background-color: lightgray;
     margin-top: calc(var(--icon-size) * .3);
+    margin: 1rem;
     width: var(--icon-size);
     height: var(--icon-size);
+}
+
+.centered {
+    margin: 1rem auto;
+}
+
+.time {
+    margin-left: auto;
+    margin-right: 1rem;
 }

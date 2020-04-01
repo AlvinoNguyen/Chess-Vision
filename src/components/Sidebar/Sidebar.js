@@ -15,6 +15,9 @@ class Sidebar extends React.Component {
                 <Stats
                     coordinate={this.props.coordinate}
                     gameInProgress={this.props.gameInProgress}
+                    gridColor={this.props.gridColor}
+                    successes={this.props.successes}
+                    secondsLeft={this.props.secondsLeft}
                 />
                 <Options
                     playGame={this.props.playGame}

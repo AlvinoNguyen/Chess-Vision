@@ -34,6 +34,7 @@
     font-weight: bold;
     padding-top: .25rem;
     padding-left: .35rem;
+    user-select: none;
 }
 
 .square:hover {

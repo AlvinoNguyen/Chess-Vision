@@ -6,9 +6,16 @@ class Stats extends React.Component {
         super(props);
     }
 
+    formatTime(seconds) {
+        if(seconds < 0)
+            seconds = 0;
+        if(seconds < 10)
+            return `0:0${seconds}`;
+        else
+            return `0:${seconds}`;
+    }
+
     render() {
-
-
         return (
             <div
                 className={`stats ${this.props.gameInProgress ? 'round-borders' : ''}`}
@@ -16,10 +23,17 @@ class Stats extends React.Component {
                 {this.props.gameInProgress ?
                 [<div>
                     <div class="stats-header">
-                        <div className='square'>{this.props.coordinate}</div>
+                        <div class={`stats-square ${this.props.gridColor === 'white' ? 'white' : 'black'}`}>
+                            {this.props.coordinate}
+                        </div>
+                    </div>
+                    <div className="stats-row">
+                        <div className="icon"></div>
+                        <div className="successes">{this.props.successes}</div>
+                        <div className="successes time">{this.formatTime(this.props.secondsLeft)}</div>
                     </div>
                 </div>] :
-                [<div className="icon"></div>] }
+                [<div className="icon centered"></div>] }
             </div>
         );
     }
