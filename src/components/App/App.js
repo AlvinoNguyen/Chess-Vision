@@ -11,6 +11,7 @@ class App extends React.Component {
             successes: 0,
             coordinate: '',
             gameInProgress: false,
+            beforeInitialGame: true,
             displayInnerHTML: '',
             displayStyle: {},
             displayZIndex: 1,
@@ -18,7 +19,8 @@ class App extends React.Component {
             showCoordinates: true,
             futureGridColor: 'white',
             gridColor: 'white',
-            secondsLeft: 0
+            secondsLeft: 0,
+            coordinateList: []
         };
         this.setRandomCoordinate = this.setRandomCoordinate.bind(this);
         this.handleSquareClick = this.handleSquareClick.bind(this);
@@ -56,7 +58,9 @@ class App extends React.Component {
                 coordinate: '',
                 attempts: 0,
                 successes: 0,
-                secondsLeft: 30
+                secondsLeft: 30,
+                coordinateList: [],
+                beforeInitialGame: false
             };
         });
         setTimeout(() => {
@@ -124,18 +128,24 @@ class App extends React.Component {
         const current = event.target;
         if(file === correctFile && row === correctRow) {
             this.setState(state => {
+                const oldList = state.coordinateList;
+                oldList.push([correctFile + correctRow, true]);
                 return {
                     attempts: state.attempts + 1,
-                    successes: state.successes + 1
+                    successes: state.successes + 1,
+                    coordinateList: oldList
                 }
             });
             current.classList.add('green-glow');
             setTimeout(() => {current.classList.remove('green-glow')}, 150);
         } else {
             this.setState(state => {
+                const oldList = state.coordinateList;
+                oldList.push([correctFile + correctRow, false]);
                 return {
                     attempts: state.attempts + 1,
-                    successes: state.successes
+                    successes: state.successes,
+                    coordinateList: oldList
                 }
             })
             const correct = document.getElementById(`${correctFile + correctRow}`);
@@ -184,6 +194,8 @@ class App extends React.Component {
                     gridColor={this.state.futureGridColor}
                     successes={this.state.successes}
                     secondsLeft={this.state.secondsLeft}
+                    coordinateList={this.state.coordinateList}
+                    beforeInitialGame={this.state.beforeInitialGame}
                 />
             </div>
         );

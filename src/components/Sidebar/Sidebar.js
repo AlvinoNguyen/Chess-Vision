@@ -18,6 +18,8 @@ class Sidebar extends React.Component {
                     gridColor={this.props.gridColor}
                     successes={this.props.successes}
                     secondsLeft={this.props.secondsLeft}
+                    coordinateList={this.props.coordinateList}
+                    beforeInitialGame={this.props.beforeInitialGame}
                 />
                 <Options
                     playGame={this.props.playGame}

@@ -9,6 +9,8 @@
     --light-square: hsl(62,42%,87%);
     --light-square-hover: hsl(62,42%,89%);
     --light-square-active: hsl(62,42%,91%);
+    --correct-green: #0F9D58;
+    --incorrect-red: #DB4437;
 }
 
 .grid-container {
@@ -84,12 +86,12 @@
 }
 
 .green-glow {
-    background-color: #0F9D58 !important;
+    background-color: var(--correct-green) !important;
     color: rgba(0, 0, 0, 0) !important;
 }
 
 .red-glow {
-    background-color: #DB4437 !important;
+    background-color: var(--incorrect-red) !important;
     color: rgba(0, 0, 0, 0) !important;
 }
 

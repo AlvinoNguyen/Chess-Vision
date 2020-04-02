@@ -15,6 +15,18 @@ class Stats extends React.Component {
             return `0:${seconds}`;
     }
 
+    formatCoordinateList(coords) {
+        return coords.map(arr => arr[1] ?
+        (<div className="coords-result correct">
+            <div className="box correct-box"></div>
+            <div>{arr[0]}</div>
+        </div>):
+        (<div className="coords-result incorrect">
+            <div className="box incorrect-box"></div>
+            <div>{arr[0]}</div>
+        </div>));
+    }
+
     render() {
         return (
             <div
@@ -22,8 +34,8 @@ class Stats extends React.Component {
             >
                 {this.props.gameInProgress ?
                 [<div>
-                    <div class="stats-header">
-                        <div class={`stats-square ${this.props.gridColor === 'white' ? 'white' : 'black'}`}>
+                    <div className="stats-header">
+                        <div className={`stats-square ${this.props.gridColor === 'white' ? 'white' : 'black'}`}>
                             {this.props.coordinate}
                         </div>
                     </div>
@@ -32,6 +44,14 @@ class Stats extends React.Component {
                         <div className="successes">{this.props.successes}</div>
                         <div className="successes time">{this.formatTime(this.props.secondsLeft)}</div>
                     </div>
+                    <div className="coords-list">{this.formatCoordinateList(this.props.coordinateList)}</div>
+                </div>] : !this.props.beforeInitialGame ? [<div>
+                    <div className="stats-row">
+                        <div className="icon"></div>
+                        <div className="successes">{this.props.successes}</div>
+                        <div className="successes time">{this.formatTime(this.props.secondsLeft)}</div>
+                    </div>
+                    <div className="coords-list">{this.formatCoordinateList(this.props.coordinateList)}</div>
                 </div>] :
                 [<div className="icon centered"></div>] }
             </div>
