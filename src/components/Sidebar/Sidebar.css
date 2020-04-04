@@ -5,7 +5,8 @@
 .sidebar {
     display: flex;
     flex-direction: column;
-    width: 450px;
+    width: calc(5 * var(--square-size));
+    height: calc(8 * var(--square-size));
 }
 
 h1 {
