@@ -71,3 +71,6 @@
     background-color: var(--start-button-hover);
 }
 
+label {
+    font-family: Arial, Helvetica, sans-serif;
+}

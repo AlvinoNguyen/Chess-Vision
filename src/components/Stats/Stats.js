@@ -2,9 +2,6 @@ import React from 'react';
 import './Stats.css';
 
 class Stats extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     formatTime(seconds) {
         if(seconds < 0)
@@ -40,20 +37,20 @@ class Stats extends React.Component {
                         </div>
                     </div>
                     <div className="stats-row">
-                        <div className="icon"></div>
+                        <img src="icon.svg" className="icon" alt=""></img>
                         <div className="successes">{this.props.successes}</div>
                         <div className="successes time">{this.formatTime(this.props.secondsLeft)}</div>
                     </div>
                     <div className="coords-list">{this.formatCoordinateList(this.props.coordinateList)}</div>
                 </div>] : !this.props.beforeInitialGame ? [<div>
                     <div className="stats-row">
-                        <div className="icon"></div>
+                    <img src="icon.svg" className="icon"></img>
                         <div className="successes">{this.props.successes}</div>
                         <div className="successes time">{this.formatTime(this.props.secondsLeft)}</div>
                     </div>
                     <div className="coords-list">{this.formatCoordinateList(this.props.coordinateList)}</div>
                 </div>] :
-                [<div className="icon centered"></div>] }
+                [<img src="icon.svg" className="icon centered" alt=""></img>] }
             </div>
         );
     }
